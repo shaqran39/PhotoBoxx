@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Profile</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="css/site.css">
+</head>
+
+<body>
+
+
+
+    <!-- Tour places table -->
+
+    <div id="tour-places-div">
+        <table class="tablePlace" id="table-places">
+            <tbody id="table-places-tbody">
+
+            </tbody>
+        </table>
+
+    </div>
+
+    <!-- create tourist place form -->
+
+    <div id="add-new-div">
+        <h2 class="add-new-title" id="name-new-title">Upload a new photo</h2>
+        <div class="row">
+            <div class="col-lbl">
+                <label for="name" class="input-lbl"> caption:</label>
+            </div>
+            <div class="col-txt">
+                <input type="text" id="name" class="input-txt" name="name">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lbl">
+                <label for="pic" class="input-lbl"> Picture:</label>
+            </div>
+            <div class="col-txt">
+                <input type="file" id="pic" class="input-txt" name="pic">
+            </div>
+        </div>
+
+        <div class="row" id="submit-div">
+            <button class="add-new-button" onclick="addPlace()"> Submit</button>
+            <button class="add-new-reset" onclick="resetForm()"> Reset</button>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>
