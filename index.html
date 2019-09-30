@@ -41,7 +41,14 @@
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="project.html">Projects</a>
           </li>
-          
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="signin.html" id = "login_div">Sign In</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger"  id = "logout_div" >Sign Out</a>
+          </li>
+
         </ul>
       </div>
     </div>
@@ -127,7 +134,7 @@
 
           <form class="form-inline d-flex">
             <input type="email" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="inputEmail" placeholder="Enter email address...">
-            <button type="submit" class="btn btn-primary mx-auto">Subscribe</button>
+            <button type="submit" id="submitBtn" onclick="submitClick()" class="btn btn-primary mx-auto">Subscribe</button>
           </form>
 
         </div>
@@ -198,6 +205,17 @@
       Copyright &copy; Your Website 2019
     </div>
   </footer>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-auth.js"></script>
+
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+       https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-analytics.js"></script>
+
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
@@ -207,7 +225,12 @@
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for this template -->
+  const auth =firebase.auth();
   <script src="js/grayscale.min.js"></script>
+  <script src="./fb.js"></script>
+  <script src="js/index.js"></script>
+
+  <script src="js/signout.js"></script>
 
 </body>
 
