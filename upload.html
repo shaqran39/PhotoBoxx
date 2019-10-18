@@ -1,46 +1,37 @@
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
 
-
     <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background-color: black;
-            color: aliceblue;
-        }
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: black;
+        color: aliceblue;
+      }
 
-        main {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
+      main {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
 
-        main>img {
-            height: 200px;
-            margin: 5px;
-        }
+      main > img {
+        height: 200px;
+        margin: 5px;
+      }
     </style>
-</head>
+  </head>
 
-
-
-
-
-
-<body>
+  <body>
     <h1>Upload Image</h1>
-    <input type="file" id="inpBilde">
+    <input type="file" id="inpBilde" />
     <main id="main">
-        <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
 
-
-
-        <script>
+      <script>
         // Your web app's Firebase configuration
         var Config = {
           apiKey: "AIzaSyCNwuHNu_BfFiHiXM93WLoAKUiZNhQGAqs",
@@ -54,44 +45,44 @@
         };
         firebase.initializeApp(Config);
 
-            let database = firebase.database();
-            let storage = firebase.storage();
+        let database = firebase.database();
+        let storage = firebase.storage();
 
-            let inpBilde = document.getElementById("inpBilde");
-            let main = document.getElementById("main");
+        let inpBilde = document.getElementById("inpBilde");
+        let main = document.getElementById("main");
 
+        function lastOppBilde() {
+          let bilde = this.files[0];
+          let timeReference = Date.now();
+          let bildenavn = storage.ref("minefinebilder/" + timeReference);
+          bildenavn.put(bilde).then(function() {
+            bildenavn.getDownloadURL().then(function(url) {
+              visBilder(url);
+              //   bildeurler.push(url);
+              //large url
+              let bildeurler = database.ref("bildeurler/" + timeReference);
+              bildeurler.set({
+                //username: ADD USERNAME HERE,
+                photo_url: url
+              });
+            });
+            console.log("its uploaded");
+          });
+        }
 
-            //large url
-            let bildeurler = database.ref("bildeurler");
+        function visBilder(myUrl) {
+          let url = myUrl;
 
-            function largeURL(snap) {
-                let url = snap.downloadURL;
-                bildeurler.push(url);
-            }
-
-            function lastOppBilde() {
-                let bilde = this.files[0];
-                //date
-                let bildenavn = storage.ref("minefinebilder/" + new Date());
-                bildenavn.put(bilde).then(largeURL);
-
-                console.log("its uploaded");
-            }
-
-            function visBilder(snap) {
-                let url = snap.val();
-
-                //html dom
-                main.innerHTML += `
+          //html dom
+          main.innerHTML += `
                     <img src="${url}">
                 `;
-                console.log("its here");
-            }
-            inpBilde.onchange = lastOppBilde;
+          console.log("its here");
+        }
+        inpBilde.onchange = lastOppBilde;
 
-            bildeurler.on("child_added", visBilder);
-        </script>
+        bildeurler.on("child_added", visBilder);
+      </script>
     </main>
-</body>
-
+  </body>
 </html>

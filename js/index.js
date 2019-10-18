@@ -1,10 +1,25 @@
-var inputEmail =document.getElementById("inputEmail");
-var submitBtn =document.getElementById("submitBtn");
+//var inputEmail =document.getElementById("inputEmail");
+//var submitBtn =document.getElementById("submitBtn");
 
 function submitClick()
 {
   window.alert("You have successfully subscribed");
 }
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    document.getElementById("signoutID").style.display = "block";
+   document.getElementById("signinID").style.display = "none";
+   document.getElementById("uploadPhotoID").style.display = "block";
+   document.getElementById("projectID").style.display = "block";
+  } else {
+    document.getElementById("signoutID").style.display = "none";
+   document.getElementById("signinID").style.display = "block";
+   document.getElementById("uploadPhotoID").style.display = "none";
+   document.getElementById("projectID").style.display = "none";
+  }
+});
+
+
 
 
 /*
@@ -69,4 +84,4 @@ firebase.auth().onAuthStateChanged(function(user) {
    document.getElementById("file_div").style.display = "block";
 
  }
-});
+});*/
